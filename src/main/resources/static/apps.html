@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        .bodyBox{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .box {
+            width: 200px;
+            height: 50px;
+            background-color: beige;
+            margin: auto;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 15px;
+            font-size: larger;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .box:hover{
+            background: #626466;
+            color: #ffffff;
+            animation: myfirst 1s;
+            -moz-animation: myfirst 1s;
+            -webkit-animation: myfirst 1s;
+            -o-animation: myfirst 1s;
+        }
+        @keyframes myfirst
+        {
+            from{
+                background-color: beige;
+            }
+            to {
+                background: #626466;
+                color: #ffffff;
+            }
+        }
+
+        @-moz-keyframes myfirst /* Firefox */
+        {
+            from{
+                background-color: beige;
+            }
+            to {
+                background: #626466;
+                color: #ffffff;
+            }
+        }
+
+        @-webkit-keyframes myfirst /* Safari and Chrome */
+        {
+            from{
+                background-color: beige;
+            }
+            to {
+                background: #626466;
+                color: #ffffff;
+            }
+        }
+
+        @-o-keyframes myfirst /* Opera */
+        {
+            from{
+                background-color: beige;
+            }
+            to {
+                background: #626466;
+                color: #ffffff;
+            }
+        }
+    </style>
+</head>
+<body class="bodyBox">
+    <div id="app" class="bodyBox">
+        <!--<div class="box">-->
+            <!--动画效果-->
+        <!--</div>-->
+        <template>
+            <el-select v-model="value" filterable clearable placeholder="请选择" style="margin-bottom: 3px" @change="query()">
+                <el-option
+                        v-for="item in initApplication"
+                        :key="item.name"
+                        :label="item.name"
+                        :value="item.name">
+                </el-option>
+            </el-select>
+        </template>
+        <el-card class="box-card" v-for="e in application" style="margin-bottom: 3px">
+            <div slot="header" class="clearfix">
+                <span>{{e.name}}</span>
+            </div>
+            <el-table :data="e.instance">
+                <el-table-column prop="instanceId" label="实例ID"></el-table-column>
+                <el-table-column prop="status" label="状态">
+                    <template slot-scope="scope">
+                        <el-tag
+                                :type="scope.row.status === 'OUT_OF_SERVICE' ? 'danger' : 'success'"
+                                disable-transitions>{{scope.row.status}}</el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        fixed="right"
+                        label="操作"
+                        width="150">
+                    <template slot-scope="scope">
+                        <el-button @click="up(scope.row)" type="success" size="small">上线</el-button>
+                        <el-button @click="outOf(scope.row)" type="danger" size="small">下线</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-card>
+    </div>
+</body>
+<!-- 引入组件库 -->
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            initApplication:[],
+            application:[],
+            value: ''
+        },
+        mounted(){
+            this.init();
+            this.query();
+            var _this = this;
+            setInterval(function(){
+                _this.query();
+            },3000);
+        },
+        methods:{
+            init(){
+                var _this = this;
+                axios.get(
+                    "/testController/getApps"
+                ).then(function(rsp){
+                    debugger
+                    _this.initApplication = rsp.data.application
+                    console.log(this.application);
+                    debugger;
+                }).catch(function(error){
+                    debugger;
+                });
+            },
+            outOf(row) {
+                var _this = this;
+                console.log(row);
+                axios.get(
+                    "/testController/outOf/apps/"+row.app+"/"+row.instanceId
+                ).then(function(rsp){
+                    debugger;
+                    _this.$message({
+                        message:row.instanceId+'已经申请下线,稍后生效！！',
+                        type:'warning'
+                    });
+                }).catch(function (error) {
+
+                });
+            },
+            up(row) {
+                var _this = this;
+                console.log(row);
+                axios.get(
+                    "/testController/up/apps/"+row.app+"/"+row.instanceId
+                ).then(function(rsp){
+                    debugger;
+                    _this.$message({
+                        message:row.instanceId+'已经申请上线,稍后生效！！',
+                        type:'success'
+                    });
+                }).catch(function (error) {
+
+                });
+            },
+            query(){
+                debugger;
+                var _this = this
+                if(!_this.value){
+                    axios.get(
+                        "/testController/getApps"
+                    ).then(function(rsp){
+                        debugger
+                        _this.application = rsp.data.application
+                        console.log(this.application);
+                        debugger;
+                    }).catch(function(error){
+                        debugger;
+                    });
+                }else{
+                    axios.get(
+                        "/testController/getAppsApp/"+_this.value
+                    ).then(function(rsp){
+                        debugger
+                        _this.application = rsp.data.application
+                        console.log(this.application);
+                        debugger;
+                    }).catch(function(error){
+                        debugger;
+                    });
+                }
+            }
+        }
+    });
+</script>
+</html>
