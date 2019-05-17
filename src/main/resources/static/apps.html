@@ -100,7 +100,7 @@
                 <el-table-column prop="status" label="状态">
                     <template slot-scope="scope">
                         <el-tag
-                                :type="scope.row.status === 'OUT_OF_SERVICE' ? 'danger' : 'success'"
+                                :type="scope.row.status === 'UP'? 'success' : 'danger'"
                                 disable-transitions>{{scope.row.status}}</el-tag>
                     </template>
                 </el-table-column>

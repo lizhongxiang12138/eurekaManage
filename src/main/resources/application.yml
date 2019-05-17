@@ -8,4 +8,4 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone:
+      defaultZone: ${eureka_url}
