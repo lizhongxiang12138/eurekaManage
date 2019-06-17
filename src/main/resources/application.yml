@@ -5,7 +5,7 @@ spring:
     name: eureka-manage
 eureka:
   client:
-    fetch-registry: true
-    register-with-eureka: true
+    fetch-registry: false
+    register-with-eureka: false
     service-url:
       defaultZone: ${eureka_url}
