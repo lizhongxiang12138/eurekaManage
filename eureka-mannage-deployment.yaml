@@ -13,10 +13,10 @@ spec:
   selector:
     matchLabels:
       k8s-app: eureka-manage
-#  template:
-#    metadata:
-#      labels:
-#        k8s-app: kubernetes-dashboard
+  template:
+    metadata:
+      labels:
+        k8s-app: kubernetes-dashboard
     spec:
       containers:
       - name: eureka-manage
