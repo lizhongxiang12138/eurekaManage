@@ -22,8 +22,11 @@ spec:
       - name: eureka-manage
         image: 172.26.206.220/library/eureka-manage-ui:1.0.0
         ports:
-        - containerPort: 3001
-          protocol: TCP
+          - containerPort: 3001
+            protocol: TCP
+       - env:
+          - name: eureka_url
+          - value: http://test.kcsmkj.cn:8761/eureka/
 #        args:
 #          - --auto-generate-certificates
           # Uncomment the following line to manually specify Kubernetes API server Host
