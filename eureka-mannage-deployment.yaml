@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        k8s-app: kubernetes-dashboard
+        k8s-app: eureka-manage
     spec:
       containers:
       - name: eureka-manage
