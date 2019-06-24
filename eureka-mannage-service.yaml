@@ -10,6 +10,6 @@ spec:
   ports:
     - port: 443
       targetPort: 3001
-      nodePort: 3001
+      nodePort: 30002
   selector:
     k8s-app: eureka-manage
