@@ -23,7 +23,7 @@ spec:
             - name: eureka_url
               value: 'http://47.107.12.122:8761/eureka/'
           image: '172.26.206.220/library/eureka-manage-ui:1.0.0'
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: eureka-manage
           ports:
             - containerPort: 3001
