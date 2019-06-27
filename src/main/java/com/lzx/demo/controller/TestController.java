@@ -5,10 +5,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.lzx.demo.dto.*;
 import com.lzx.demo.feign.SrdFeign;
+import com.lzx.demo.service.KafkaService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -28,8 +31,12 @@ public class TestController {
 
     private SrdFeign srdFeign;
 
-    public TestController(SrdFeign srdFeign) {
+    private KafkaService kafkaService;
+
+    public TestController(SrdFeign srdFeign,
+                          KafkaService kafkaService) {
         this.srdFeign = srdFeign;
+        this.kafkaService = kafkaService;
     }
 
     @GetMapping("/findByPage")
@@ -63,6 +70,7 @@ public class TestController {
     }
 
     @GetMapping("/getApps")
+    @ApiOperation(value = "获取所有应用")
     public ApplicationsDTO getApps() throws IOException {
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -100,5 +108,11 @@ public class TestController {
     @GetMapping("/up/apps/{app}/{instanceId}")
     public void up(@PathVariable("app")String app,@PathVariable("instanceId")String instanceId){
         srdFeign.up(app,instanceId,"UP");
+    }
+
+    @PostMapping("/testSendToKafka")
+    public Boolean testSendToKafka(@RequestBody KafkaMessDTO kafkaMessDTO){
+        kafkaService.sendChannelMess("myChannel",kafkaMessDTO.getMess());
+        return true;
     }
 }

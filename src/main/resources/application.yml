@@ -1,6 +1,13 @@
 server:
   port: 3001
 spring:
+  kafka:
+    bootstrap-servers: 39.100.73.134:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  profiles:
+    active: dev
   application:
     name: eureka-manage
   redis:
@@ -13,3 +20,6 @@ eureka:
     register-with-eureka: false
     service-url:
       defaultZone: ${eureka_url}
+#logging:
+#  level:
+#    root: debug
