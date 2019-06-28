@@ -20,9 +20,13 @@ spec:
     spec:
       containers:
         - env:
-            - name: eureka_url
-              value: 'http://47.107.12.122:8761/eureka/'
-          image: '172.26.206.220/library/eureka-manage-ui:1.0.0_20190627'
+            - name: SPRING_PROFILE
+              value: dev
+            - name: SPRING_LABEL
+              value: k8s
+            - name: lzx_CONFIG_URL
+              value: http://39.100.73.134:30005
+          image: '172.26.206.220/library/eureka-manage-ui:1.0.0_20190628'
           imagePullPolicy: Always
           name: eureka-manage
           ports:

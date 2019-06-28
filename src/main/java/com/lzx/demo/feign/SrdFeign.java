@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * @Auther: lzx
  * @Date: 2019/4/28 16:18
  */
-@FeignClient(value = "srd",url="${eureka.client.service-url.defaultZone}")
+@FeignClient(value = "srd",url="http://${eureka.instance.hostname}:${server.port}/eureka/")
 public interface SrdFeign {
 
     @GetMapping("/apps")
