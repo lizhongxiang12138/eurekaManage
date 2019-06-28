@@ -8,7 +8,7 @@ metadata:
   name: eureka-manage
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -25,7 +25,7 @@ spec:
             - name: SPRING_LABEL
               value: k8s
             - name: lzx_CONFIG_URL
-              value: http://39.100.73.134:30005
+              value: http://service-config:30005
           image: '172.26.206.220/library/eureka-manage-ui:1.0.0_20190628'
           imagePullPolicy: Always
           name: eureka-manage
