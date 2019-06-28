@@ -21,6 +21,11 @@ public class KafkaServiceImpl implements KafkaService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    /**
+     * 发布消息到 topic
+     * @param channel topic 名称
+     * @param message 消息内容
+     */
     @Override
     public void sendChannelMess(String channel, String message) {
         kafkaTemplate.send(channel,message);

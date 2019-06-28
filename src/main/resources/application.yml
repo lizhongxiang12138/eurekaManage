@@ -2,7 +2,7 @@ server:
   port: 3001
 spring:
   kafka:
-    bootstrap-servers: 39.100.73.134:9092
+    bootstrap-servers: 39.100.73.134:9092     #Kafka服务端地址
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
