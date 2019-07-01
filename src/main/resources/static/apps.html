@@ -192,7 +192,7 @@
             init(){
                 var _this = this;
                 axios.get(
-                    "testController/getApps"
+                    "http://39.100.73.134:30006/eureka-manage/testController/getApps"
                 ).then(function(rsp){
                     debugger
                     _this.initApplication = rsp.data.application
@@ -206,7 +206,7 @@
                 var _this = this;
                 console.log(row);
                 axios.get(
-                    "testController/outOf/apps/"+row.app+"/"+row.instanceId
+                    "http://39.100.73.134:30006/eureka-manage/testController/outOf/apps/"+row.app+"/"+row.instanceId
                 ).then(function(rsp){
                     debugger;
                     _this.$message({
@@ -221,7 +221,7 @@
                 var _this = this;
                 console.log(row);
                 axios.get(
-                    "testController/up/apps/"+row.app+"/"+row.instanceId
+                    "http://39.100.73.134:30006/eureka-manage/testController/up/apps/"+row.app+"/"+row.instanceId
                 ).then(function(rsp){
                     debugger;
                     _this.$message({
@@ -237,7 +237,7 @@
                 var _this = this
                 if(!_this.value){
                     axios.get(
-                        "testController/getApps"
+                        "http://39.100.73.134:30006/eureka-manage/testController/getApps"
                     ).then(function(rsp){
                         debugger
                         _this.application = rsp.data.application
@@ -248,7 +248,7 @@
                     });
                 }else{
                     axios.get(
-                        "testController/getAppsApp/"+_this.value
+                        "http://39.100.73.134:30006/eureka-manage/testController/getAppsApp/"+_this.value
                     ).then(function(rsp){
                         debugger
                         _this.application = rsp.data.application
