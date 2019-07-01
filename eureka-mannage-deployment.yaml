@@ -26,7 +26,7 @@ spec:
               value: k8s
             - name: lzx_CONFIG_URL
               value: http://service-config:30005
-          image: '172.26.206.220/library/eureka-manage-ui:1.0.0_20190628'
+          image: '172.26.206.220/library/eureka-manage-ui:1.0.0_20190701'
           imagePullPolicy: Always
           name: eureka-manage
           ports:
