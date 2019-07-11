@@ -3,6 +3,23 @@ server:
 spring:
   application:
     name: eureka-manage
+
+  ######################################################
+  #   数据库连接相关配置
+  ######################################################
+  datasource:
+    url: jdbc:mysql://39.100.132.241:3306/eureka_manage?autoReconnect=true&amp;characterEncoding=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+
 eureka:
   client:
     fetch-registry: true
