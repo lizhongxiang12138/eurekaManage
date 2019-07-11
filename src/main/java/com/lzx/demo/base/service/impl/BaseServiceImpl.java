@@ -288,8 +288,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                    }default:
-                        return null;
+                    }default:{
+                        return criteriaBuilder.greaterThanOrEqualTo(root.get(columnConditionBO.getColumn()), value);
+                    }
                 }
             }case gt:{
                 switch (classType){
@@ -300,8 +301,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                    }default:
-                        return null;
+                    }default:{
+                        return criteriaBuilder.greaterThanOrEqualTo(root.get(columnConditionBO.getColumn()), value);
+                    }
                 }
             }case le:{
                 switch (classType){
@@ -312,8 +314,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                    }default:
-                        return null;
+                    }default:{
+                        return criteriaBuilder.greaterThanOrEqualTo(root.get(columnConditionBO.getColumn()), value);
+                    }
                 }
             }case lt:{
                 switch (classType){
@@ -324,8 +327,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                    }default:
-                        return null;
+                    }default:{
+                        return criteriaBuilder.greaterThanOrEqualTo(root.get(columnConditionBO.getColumn()), value);
+                    }
                 }
             }case in: {
                 String[] inValues = value.split(",");

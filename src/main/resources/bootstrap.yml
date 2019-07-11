@@ -4,6 +4,6 @@ spring:
 
   cloud:
     config:
-      profile: ${SPRING_PROFILE}
+      profile: ${LZX_SPRING_PROFILE}
       label: ${SPRING_LABEL}
       uri: ${lzx_CONFIG_URL}

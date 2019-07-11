@@ -19,6 +19,10 @@ public class StudentController extends BaseController<Student> {
     private StudentService studentService;
 
     public StudentController(StudentService studentService) {
+         /*
+            !!!!!!!!!!!!!!!!!!!!重点：
+            这个时必须的   ·······~~~~~~~~注意哦
+         */
         this.baseService = studentService;
         this.studentService = studentService;
     }

@@ -23,12 +23,16 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
     private StudentDao studentDao;
 
     public StudentServiceImpl(StudentDao studentDao) {
+        /*
+            !!!!!!!!!!!!!!!!!!!!重点：
+            这个时必须的   ·······~~~~~~~~注意哦
+         */
         this.dao = studentDao;
         this.studentDao = studentDao;
     }
 
     /**
-     * 创建自己的查询条件
+     * 扩展基类中没有的查询条件自己的查询条件
      * @return
      */
     @Override

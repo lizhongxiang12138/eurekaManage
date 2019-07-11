@@ -28,7 +28,7 @@ public class Student {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "ID",length = 32)
     private String id;
 
