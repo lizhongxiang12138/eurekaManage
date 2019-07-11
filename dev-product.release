@@ -1,0 +1,32 @@
+# 请参考 https://help.aliyun.com/document_detail/59293.html 了解更多关于release文件的编写方式
+
+#testing
+# 构建源码语言类型
+testing.code.language=oracle-jdk1.8
+# 构建打包使用的打包文件
+testing.build.command=sh build.sh
+testing.build.output=target/product-0.0.1-SNAPSHOT.jar
+# Docker镜像构建之后push的仓库地址
+testing.docker.repo=registry.cn-shenzhen.aliyuncs.com/ipp/product
+testing.docker.tag=dev_${TIMESTAMP}
+
+
+#staging
+# 构建源码语言类型
+staging.code.language=oracle-jdk1.8
+# 构建打包使用的打包文件
+staging.build.command=sh build.sh
+staging.build.output=target/product-0.0.1-SNAPSHOT.jar
+# Docker镜像构建之后push的仓库地址
+staging.docker.repo=registry.cn-shenzhen.aliyuncs.com/ipp/product
+staging.docker.tag=staging
+
+
+#master
+# 构建源码语言类型
+code.language=oracle-jdk1.8
+# 构建打包使用的打包文件
+build.output=target/product-0.0.1-SNAPSHOT.jar
+# Docker镜像构建之后push的仓库地址
+docker.repo=registry.cn-shenzhen.aliyuncs.com/ipp/product
+docker.tag=master

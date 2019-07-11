@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +26,7 @@ import java.util.List;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel(value = "应用模型")
 public class ApplicationsDTO {
 
 //    @JacksonXmlProperty(localName = "versions__delta")
@@ -32,5 +35,6 @@ public class ApplicationsDTO {
 //    private String appsHashcode;
     @JacksonXmlProperty(localName = "application")
     @JacksonXmlElementWrapper(useWrapping = false)
+    @ApiModelProperty(value = "应用信息",required = true)
     private List<ApplicationDTO>  application;
 }
