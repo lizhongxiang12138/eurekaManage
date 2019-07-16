@@ -30,7 +30,7 @@ spring:
   #   数据库连接相关配置
   ######################################################
   datasource:
-    url: jdbc:mysql://39.100.132.241:3306/eureka_manage?autoReconnect=true&amp;characterEncoding=utf-8
+    url: jdbc:mysql://39.100.132.241:3306/eureka_manage?autoReconnect=true&amp;characterEncoding=utf-8&failOverReadOnly=false
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -40,5 +40,9 @@ spring:
         hbm2ddl:
           auto: update
         dialect: org.hibernate.dialect.MySQL5Dialect
+    ##映射方式配置，若配置成SpringPhysicalNamingStrategy，在进行映射时,首字母小写，大写字母变为下划线加小写
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
 

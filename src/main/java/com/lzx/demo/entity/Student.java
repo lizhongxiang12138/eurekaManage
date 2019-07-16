@@ -8,6 +8,8 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
 /**
@@ -36,6 +38,8 @@ public class Student {
      * 名称
      */
     @Column(name = "NAME",length = 100)
+    @Pattern(regexp = "[\\u4e00-\\u9fa5]",message = "名称必须为中文")
+    @NotNull(message = "名称必须填写")
     private String name;
 
     /**
@@ -55,6 +59,7 @@ public class Student {
     /**
      * 分数
      */
-    @Column(name = "SCORE",precision = 10,scale = 5)
-    private BigDecimal score;
+    @Column(name = "AGE",precision = 10,scale = 5)
+    @NotNull(message = "分数不能为空")
+    private BigDecimal age;
 }
