@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients
-@EnableEurekaClient
+//@EnableEurekaClient
 public class DemoApplication {
 
     public static void main(String[] args) {
