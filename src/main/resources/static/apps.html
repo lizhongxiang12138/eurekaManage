@@ -145,7 +145,7 @@
                         <el-table-column prop="status" label="状态">
                             <template slot-scope="scope">
                                 <el-tag
-                                        :type="scope.row.status === 'UP'? 'success' : 'danger'"
+                                        :type="scope.row.status === 'UP'? 'success' :scope.row.status === 'DOWN'?'danger':'warning' "
                                         disable-transitions>{{scope.row.status}}</el-tag>
                             </template>
                         </el-table-column>
@@ -154,8 +154,9 @@
                                 label="操作"
                                 width="150">
                             <template slot-scope="scope">
-                                <el-button @click="up(scope.row)" type="success" size="small">上线</el-button>
-                                <el-button @click="outOf(scope.row)" type="danger" size="small">下线</el-button>
+                                <el-button v-if="scope.row.status === 'OUT_OF_SERVICE'" @click="up(scope.row)" type="success" size="small">上线</el-button>
+                                <el-button v-if="scope.row.status === 'UP'" @click="outOf(scope.row)" type="warning" size="small">下线</el-button>
+                                <el-button v-if="scope.row.status === 'DOWN'" @click="deleteOf(scope.row)" type="danger" size="small">删除</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -200,6 +201,22 @@
                     debugger;
                 }).catch(function(error){
                     debugger;
+                });
+            },
+            deleteOf(row) {
+                debugger
+                var _this = this;
+                console.log(row);
+                axios.get(
+                    "/testController/delete/apps/"+row.app+"/"+row.instanceId
+                ).then(function(rsp){
+                    debugger;
+                    _this.$message({
+                        message:row.instanceId+'已经申请删除,稍后生效！！',
+                        type:'warning'
+                    });
+                }).catch(function (error) {
+
                 });
             },
             outOf(row) {

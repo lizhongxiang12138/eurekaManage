@@ -97,6 +97,16 @@ public class TestController {
         }
     }
 
+    @GetMapping("/delete/apps/{app}/{instanceId}")
+    public void delete(@PathVariable("app")String app,@PathVariable("instanceId")String instanceId){
+        srdFeign.delete(app,instanceId);
+        try {
+            Thread.sleep(2*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @GetMapping("/up/apps/{app}/{instanceId}")
     public void up(@PathVariable("app")String app,@PathVariable("instanceId")String instanceId){
         srdFeign.up(app,instanceId,"UP");

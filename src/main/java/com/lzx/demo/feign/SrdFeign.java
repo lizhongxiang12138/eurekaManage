@@ -23,4 +23,8 @@ public interface SrdFeign {
 
     @DeleteMapping("/apps/{app}/{instanceId}/status")
     void up(@PathVariable("app")String app, @PathVariable("instanceId")String instanceId, @RequestParam("value")String value);
+
+
+    @DeleteMapping("/apps/{app}/{instanceId}")
+    void delete(@PathVariable("app")String app, @PathVariable("instanceId")String instanceId);
 }
